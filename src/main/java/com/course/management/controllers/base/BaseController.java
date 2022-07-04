@@ -1,11 +1,10 @@
 package com.course.management.controllers.base;
 
+import com.course.management.models.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import com.course.management.models.ApiResponse;
-
-public abstract class BaseController {			//BaseController is parent class of all other controller
+public abstract class BaseController {
 
 	protected ResponseEntity sendSuccessApiResponse(Object payload) {
 		return new ResponseEntity(new ApiResponse<>(Boolean.TRUE, 200, "Successful", payload), HttpStatus.OK);

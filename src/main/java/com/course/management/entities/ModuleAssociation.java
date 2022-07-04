@@ -1,15 +1,14 @@
 package com.course.management.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-
 import com.course.management.entities.shared.BaseEntity;
 import com.sun.istack.NotNull;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "module_associations")
@@ -20,7 +19,7 @@ import lombok.Setter;
 public class ModuleAssociation extends BaseEntity {
 
     private String code;
-    @NotNull				//There will be atleast one module in every Course
+    @NotNull
     private String moduleCode;
 
     @NotNull

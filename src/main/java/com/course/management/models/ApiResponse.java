@@ -15,7 +15,7 @@ public class ApiResponse<T> {
     String message;
     T body;
 
-    public ApiResponse(T payload) {		//Parameterised Contsructor
+    public ApiResponse(T payload) {
         this.body = payload;
     }
 }

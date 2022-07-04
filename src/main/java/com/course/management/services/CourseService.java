@@ -1,13 +1,5 @@
 package com.course.management.services;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-import java.util.stream.Collectors;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.course.management.dtos.CourseDto;
 import com.course.management.dtos.ModuleDto;
 import com.course.management.entities.Course;
@@ -19,6 +11,13 @@ import com.course.management.mapper.IModuleMapper;
 import com.course.management.repos.CourseRepository;
 import com.course.management.repos.ModuleAssociationRepository;
 import com.course.management.repos.ModuleRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class CourseService {
@@ -47,7 +46,8 @@ public class CourseService {
     public CourseDto getCourseDtoWithValues(Course course){
         CourseDto courseDto = courseMapper.convertToDto(course);
         List<ModuleAssociation> moduleAssociationList = moduleAssociationRepository.findByCourseCode(course.getCode());
-        List<String> moduleCodes = moduleAssociationList.stream().map(ModuleAssociation::getModuleCode).collect(Collectors.toList());
+        List<String> moduleCodes = moduleAssociationList.stream()
+                .map(ModuleAssociation::getModuleCode).collect(Collectors.toList());
         List<Module> modules = moduleRepository.findByModulesCode(moduleCodes);
         courseDto.setNumberOfSession(modules.stream().mapToDouble(Module::getNumberOfSession).sum());
         courseDto.setTotalHours(modules.stream().mapToDouble(Module::getTotalHours).sum());
